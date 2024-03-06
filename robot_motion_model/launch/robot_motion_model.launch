@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="x_init" default="0.0"/>
+    <arg name="y_init" default="0.0"/>
+    <arg name="theta_init" default="0.0"/>
+    <arg name="lin_vel_init" default="0.0"/>
+    <arg name="rot_vel_init" default="0.0"/>
+
+    <arg name="motion_model" default="forward_kinematics"/>
+
+    <arg name="visualization" default="true"/>
+
+    <node pkg="robot_motion_model" name="kinematic_model" type="kinematic_model">
+        <param name="x_init" value="$(arg x_init)"/>
+        <param name="z_init" value="$(arg y_init)"/>
+        <param name="theta_init" value="$(arg theta_init)"/>
+        <param name="lin_vel_init" value="$(arg lin_vel_init)"/>
+        <param name="rot_vel_init" value="$(arg rot_vel_init)"/>
+    </node>
+
+    <node pkg="robot_motion_model" name="ground_truth_path" type="ground_truth_path"/>
+
+    <group if="$(arg visualization)">
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_motion_model)/rviz/motion_model.rviz"/>
+    </group>
+</launch>
+  
