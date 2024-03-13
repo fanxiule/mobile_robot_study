@@ -44,6 +44,10 @@ KinematicModel::KinematicModel()
     {
         motion_model_func_ = robot_motion_model::forwardKinematicModel;
     }
+    else if (motion_model_ == "velocity_model")
+    {
+        motion_model_func_ = robot_motion_model::velocityMotionModel;
+    }
     else
     {
         ROS_FATAL_STREAM("Unsupported motion model: " << motion_model_ << ". Exiting...");

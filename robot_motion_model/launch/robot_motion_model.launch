@@ -6,7 +6,7 @@
     <arg name="lin_vel_init" default="0.0"/>
     <arg name="rot_vel_init" default="0.0"/>
 
-    <arg name="motion_model" default="forward_kinematics"/>
+    <arg name="motion_model" default="forward_kinematics" doc="Choose from forward_kinematics, velocity_model"/>
 
     <arg name="visualization" default="true"/>
 
