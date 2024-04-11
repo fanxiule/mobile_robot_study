@@ -6,6 +6,8 @@
 #include <ros/ros.h>
 #include <tf2/LinearMath/Quaternion.h>
 
+namespace robot_motion_model
+{
 KinematicModel::KinematicModel()
 {
     ros::NodeHandle pnh;
@@ -42,11 +44,11 @@ KinematicModel::KinematicModel()
 
     if (motion_model_ == "forward_kinematics")
     {
-        motion_model_func_ = robot_motion_model::forwardKinematicModel;
+        motion_model_func_ = forwardKinematicModel;
     }
     else if (motion_model_ == "velocity_model")
     {
-        motion_model_func_ = robot_motion_model::velocityMotionModel;
+        motion_model_func_ = velocityMotionModel;
     }
     else
     {
@@ -116,10 +118,12 @@ void KinematicModel::recordVelocity(const geometry_msgs::Twist::ConstPtr &contro
     vel_[1] = control_msg->angular.z;
 }
 
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematic_model");
-    KinematicModel kinematic_model;
+    robot_motion_model::KinematicModel kinematic_model;
     ros::spin();
     return 0;
 }

@@ -3,6 +3,8 @@
 #include <nav_msgs/Path.h>
 #include <ros/ros.h>
 
+namespace robot_motion_model
+{
 class GroundTruthPathPublisher
 {
 public:
@@ -42,10 +44,12 @@ private:
     }
 };
 
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "ground_truth_robot_path");
-    GroundTruthPathPublisher path_pub;
+    robot_motion_model::GroundTruthPathPublisher path_pub;
     ros::spin();
     return 0;
 }

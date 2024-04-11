@@ -26,7 +26,6 @@ add_executable(kinematic_model src/kinematic_model.cpp)
 add_dependencies(kinematic_model ${catkin_EXPORTED_TARGETS})
 target_link_libraries(kinematic_model ${catkin_LIBRARIES})
 
-
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.h"

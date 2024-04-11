@@ -7,6 +7,8 @@
 #include <array>
 #include <string>
 
+namespace robot_motion_model
+{
 class KinematicModel
 {
 public:
@@ -14,12 +16,18 @@ public:
     ~KinematicModel() = default;
 
 private:
-    /* @brief Receives control command, calculates and publihes path
+    /** 
+     * @brief Receives control command, calculates and publihes path
      *
      * @param[in] control_msg Control command
      */
     void controllCallback(const geometry_msgs::Twist::ConstPtr &control_msg);
 
+    /**
+     * @brief Writes velocity to class attributes
+     * 
+     * @param[in] control_msg Control command
+     */
     void recordVelocity(const geometry_msgs::Twist::ConstPtr &control_msg);
 
     ros::NodeHandle nh_;
@@ -48,4 +56,6 @@ private:
     // Motio model
     std::string motion_model_{"forward_kinematics"};
     void (*motion_model_func_)(std::array<double, 3> &, const std::array<double, 2> &, const double);
+};
+
 };
