@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="visualization" default="true"/>
+
+    <node pkg="robot_sensor_model" name="scan_to_pointcloud_converter" type="scan_to_pointcloud_converter"/>
+
+    <group if="$(arg visualization)">
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_sensor_model)/rviz/sensor_model.rviz"/>
+    </group>
+</launch>
+  
